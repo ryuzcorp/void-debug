@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "source": {
+    "name": "void-debug",
+    "d1_databases": [
+      {
+        "binding": "DB",
+        "database_name": "debug-db",
+        "migrations_dir": "db/migrations"
+      }
+    ],
+    "r2_buckets": [
+      {
+        "binding": "STORAGE",
+        "bucket_name": "debug-storage"
+      }
+    ]
+  },
+  "resolved": {
+    "name": "void-debug",
+    "d1_databases": [
+      {
+        "binding": "DB",
+        "database_name": "debug-db",
+        "migrations_dir": "db/migrations"
+      }
+    ],
+    "durable_objects": {
+      "bindings": [
+        {
+          "name": "PROBE",
+          "class_name": "ProbeDurableObject"
+        },
+        {
+          "name": "EchoWs",
+          "class_name": "EchoWs"
+        }
+      ]
+    },
+    "migrations": [
+      {
+        "tag": "void-durable-probe-v1",
+        "new_sqlite_classes": ["ProbeDurableObject"]
+      },
+      {
+        "tag": "void-ws-v1",
+        "new_sqlite_classes": ["EchoWs"]
+      }
+    ],
+    "r2_buckets": [
+      {
+        "binding": "STORAGE",
+        "bucket_name": "debug-storage"
+      }
+    ]
+  },
+  "text": "{\n  \"name\": \"void-debug\",\n  \"d1_databases\": [\n    {\n      \"binding\": \"DB\",\n      \"database_name\": \"debug-db\",\n      \"migrations_dir\": \"db/migrations\"\n    }\n  ],\n  \"durable_objects\": {\n    \"bindings\": [\n      {\n        \"name\": \"PROBE\",\n        \"class_name\": \"ProbeDurableObject\"\n      },\n      {\n        \"name\": \"EchoWs\",\n        \"class_name\": \"EchoWs\"\n      }\n    ]\n  },\n  \"migrations\": [\n    {\n      \"tag\": \"void-durable-probe-v1\",\n      \"new_sqlite_classes\": [\n        \"ProbeDurableObject\"\n      ]\n    },\n    {\n      \"tag\": \"void-ws-v1\",\n      \"new_sqlite_classes\": [\n        \"EchoWs\"\n      ]\n    }\n  ],\n  \"r2_buckets\": [\n    {\n      \"binding\": \"STORAGE\",\n      \"bucket_name\": \"debug-storage\"\n    }\n  ]\n}\n"
+}
