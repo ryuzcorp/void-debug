@@ -40,6 +40,10 @@ export default defineConfig({
   // BETTER_AUTH_SECRET at deploy when the app has none; a value set as an
   // app secret always wins.
   auth: { providers: ["email"] },
+  // Managed sandbox (Void's `getSandbox()`): the default image is qualified
+  // for celld platforms (no RUN, shim-carrying bases), so no custom
+  // Dockerfile or platform image is needed.
+  sandbox: true,
   cloudflare: {
     // The Worker name celld serves the app as.
     name: "void-debug",
