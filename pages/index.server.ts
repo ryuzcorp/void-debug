@@ -2,6 +2,7 @@ import { defineHandler, type InferProps } from "void";
 import { getUser } from "void/auth";
 import { kv } from "void/kv";
 
+import { readActionBody } from "../lib/action-body";
 import { CHECKS, isCheckName, runCheck } from "../lib/checks";
 import { getResults, mergeResult } from "../lib/results";
 
@@ -18,7 +19,7 @@ export const loader = defineHandler(async () => {
 });
 
 export const action = defineHandler(async (c) => {
-  const body = await c.req.parseBody();
+  const body = await readActionBody(c.req);
   if (body.intent === "run-one" && typeof body.name === "string" && isCheckName(body.name)) {
     await mergeResult(await runCheck(body.name));
     return;
