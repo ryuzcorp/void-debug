@@ -5,9 +5,10 @@ import AuthPanel from "./_AuthPanel" with { island: "load" };
 import SseProbe from "./_SseProbe" with { island: "load" };
 import WsProbe from "./_WsProbe" with { island: "load" };
 import type { Props } from "./index.server.ts";
+import type { CheckName } from "../lib/checks";
 import type { StoredResults } from "../lib/results";
 
-type CheckDef = { name: string; title: string; blurb: string };
+type CheckDef = { name: CheckName; title: string; blurb: string };
 
 function Badge({ state }: { state: "pass" | "fail" | "pending" }) {
   if (state === "pass") return <span class="badge badge-success">pass</span>;
@@ -24,7 +25,7 @@ function CheckRow({
   result: StoredResults[string] | undefined;
   mounted: boolean;
 }) {
-  const run = useForm("/" as string, { intent: "run-one", name: check.name });
+  const run = useForm("/?one" as string, { name: check.name });
   const state = result === undefined ? "pending" : result.ok ? "pass" : "fail";
   return (
     <li class="border-base-300 flex flex-col gap-1 border-b py-3 last:border-b-0">
@@ -54,7 +55,7 @@ function CheckRow({
 }
 
 export default function Home({ checks, results, userEmail, cronLast }: Props) {
-  const runAll = useForm("/" as string, { intent: "run-all" });
+  const runAll = useForm("/?all" as string, {});
   const mounted = atom(false);
   watch.once(() => {
     if (typeof window === "undefined") {
